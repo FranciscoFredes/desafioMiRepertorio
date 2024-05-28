@@ -3,12 +3,11 @@ const pool = require("./dbConfig");
 // Función para ejecutar una consulta SQL
 async function consultaSQL() {
     // Obtenemos una conexión de la pool
-    try {
-        const client = await pool.connect();
+    const client = await pool.connect();
+    try {       
         // Ejecutamos la consulta SQL
         const result = await client.query("SELECT * FROM canciones");
         // Mostramos los resultados
-        console.log(result.rows);
         return result.rows;
     } catch (error) {
         console.error("Error al ejecutar la consulta:", error);
@@ -27,7 +26,7 @@ const agregarCancion = async (titulo, artista, tono) => {
 
     try {
         const response = await client.query(text, values);
-        console.log("Canción agregada", response);
+        console.log("Canción agregada");
     } catch (error) {
         console.error("Error agregando canción:", error);
     } finally {
@@ -43,7 +42,7 @@ const editarCancion = async (titulo, artista, tono, id) => {
     const values = [titulo, artista, tono, id];
     try {
         const res = await client.query(text, values);
-        console.log("Cancion actualizada", res);
+        console.log("Cancion actualizada");
     } catch (err) {
         console.error("Error actualizando la cancion : ", err);
     } finally {
@@ -58,7 +57,7 @@ const eliminarCancion = async (id) => {
     const values = [id];
     try {
         const response = await client.query(text, values);
-        console.log("Cancion eliminada ", response);
+        console.log("Cancion eliminada ");
     } catch (error) {
         console.error("Error eliminando canción:", error);
     } finally {
