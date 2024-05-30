@@ -18,7 +18,7 @@ app.get("/", async (req,res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
-//Ruta para agregar canción
+//Ruta para editar canción
 app.put("/cancion/:id" , async (req, res) => {
     try {
          //Recibiendo datos desde el html
